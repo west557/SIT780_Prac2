@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+  # Run this job when commit is not made by the owner
+  if: (github.event.pusher.name != github.event.repository.owner.name) # constraint
+  runs-on: ubuntu-latest #run the job on Ubuntu server.
+  steps:
+    - uses: actions/checkout@v2 #copy the code to the server.
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo add other actions to buid, 
+        echo test, and deploy your project.
